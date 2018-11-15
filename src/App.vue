@@ -54,7 +54,7 @@
                 let serv1 = new Promise(((resolve, reject) => {
                     axios.get('http://localhost:4000')
                         .then(response => {
-                            resolve({1 : response.data})
+                            resolve({1 : response.data.time})
                         })
                         .catch(e => resolve({1 : 'DOWN'}))
                 }))
@@ -65,15 +65,15 @@
                         })
                         .catch(e => resolve({2 : 'DOWN'}))
                 }))
-                // let serv3 = new Promise(((resolve, reject) => {
-                //     axios.get('http://localhost:4002')
-                //         .then(response => {
-                //             resolve(response)
-                //         })
-                //         .catch(e => resolve({3 : 'DOWN'}))
-                // }))
+                let serv3 = new Promise(((resolve, reject) => {
+                    axios.get('http://localhost:4002/10')
+                        .then(response => {
+                            resolve({3: response.data})
+                        })
+                        .catch(e => resolve({3 : 'DOWN'}))
+                }))
 
-                Promise.all([serv1, serv2])
+                Promise.all([serv1, serv2, serv3])
                     .then(response => {
                         let results = {date: dateMoment, data: {
                                 1 : null,

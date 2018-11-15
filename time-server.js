@@ -15,7 +15,8 @@ app.get('/', (req, res) => {
 	  	
 	  	res
 	    .header({
-	      'Content-Type': 'application/json',
+	      	'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': '*'
 	    })
 	    .json(data)
 
