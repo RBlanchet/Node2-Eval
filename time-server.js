@@ -11,3 +11,8 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Listening on ${port}`)
 })
+
+app.use(
+  '/client',
+  express.static(__dirname + '/public')
+)
