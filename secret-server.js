@@ -14,7 +14,10 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 })); 
 
-
+/**
+ * @description inverse une châine de caractères
+ * @param {string} str le mot secret à "encrypter"
+ */
 function reverseString(str) {
     console.log(str)
     let splitString = str.split("")
@@ -29,17 +32,31 @@ app.get('/', function (req, res) {
 
 app.get('/secret', function (req, res) {
 
-    let secretWord = reverseString('secret')
-
-    fse.writeFile("./data/secret.txt", secretWord, function(err) {
-        if(err) {
-            return console.log(err)
-        }
-
-    console.log("The file was saved!")
+    let file = new Promise((resolve, reject) => {
+        fse.readFile('data/secret.txt', 'utf8', (err, data) => {
+            if (err) reject(err)
+            resolve(data)
+        })
     })
 
-    res.json(secretWord)
+    file
+        .then(response => {
+            if(response.length == 0) {
+                let secretWord = 'secret'
+                fse.writeFile("./data/secret.txt", reverseString(secretWord), function(err) {
+                    if(err) {
+                        return console.log(err)
+                    }
+                    console.log("The file was saved!")
+                })
+                res.json(secretWord)
+            }
+            else {
+                let secretWord = reverseString(response)
+                res.json(secretWord)
+            }
+        })
+        .catch(e => e)
   })
 
 app.post('/secretModify', function (req, res) {
