@@ -39,6 +39,7 @@ app.get('/secret', function (req, res) {
     console.log("The file was saved!")
     })
 
+    res.header("Access-Control-Allow-Origin", "*")
     res.json(secretWord)
   })
 
@@ -53,7 +54,8 @@ app.post('/secretModify', function (req, res) {
 
     console.log("The new secret was saved!")
     })
-    
+
+    res.header("Access-Control-Allow-Origin", "*")
     res.json(anotherSecretWord)
 })
   

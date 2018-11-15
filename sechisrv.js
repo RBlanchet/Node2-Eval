@@ -39,7 +39,7 @@ function requestServ() {
     }))
 
     let secretServer = new Promise(((resolve, reject) => {
-        fetch('http://localhost:4001')
+        fetch('http://localhost:4001/secret')
             .then(r => resolve(r.json()))
             .catch(e => resolve('ERROR'))
     }))
@@ -65,7 +65,7 @@ function addInArray(element) {
 app.get('/:number', function (req, res) {
     let number = req.params.number - 1
     if (number >= 0 && number <= 10 && Number.isInteger(number)) {
-        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Origin", "*")
         res.json(responseServ[number])
     } else {
         res.status(400)

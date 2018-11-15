@@ -3,9 +3,11 @@
         <div class="title">
             Application - Exercice 5
         </div>
-        <div v-for="element in sliceArray">
+        <div v-for="element in paginationElement">
             {{ element }}
         </div>
+        <button @click="nextPage">Suivant</button>
+        <button @click="prevPage">Precedent</button>
         <transition name="slide-fade" mode="out-in">
             <router-view></router-view>
         </transition>
@@ -16,6 +18,8 @@
     import axios from 'axios'
     import moment from 'moment'
 
+    const sizePage = 10
+
     export default {
         name: "App",
         data() {
@@ -23,9 +27,8 @@
                 resetVariable: false,
                 last100Request: [],
                 pageNumber: 0,
-                sizePage: 10,
                 currentStartIndexPage: 0,
-                currentEndIndexPage: this.sizePage,
+                currentEndIndexPage: sizePage,
                 paginationElement: []
             }
         },
@@ -38,9 +41,13 @@
                 this.last100Request.unshift(element)
             },
             nextPage() {
+                this.currentStartIndexPage += sizePage
+                this.currentEndIndexPage += sizePage
                 this.pageNumber++;
             },
             prevPage() {
+                this.currentStartIndexPage -= sizePage
+                this.currentEndIndexPage -= sizePage
                 this.pageNumber--;
             },
             sliceArray() {
@@ -59,7 +66,7 @@
                         .catch(e => resolve({1 : 'DOWN'}))
                 }))
                 let serv2 = new Promise(((resolve, reject) => {
-                    axios.get('http://localhost:4001')
+                    axios.get('http://localhost:4001/secret')
                         .then(response => {
                             resolve({2 : response.data})
                         })
@@ -85,6 +92,7 @@
                             results.data[Object.keys(value)] = Object.values(value)
                         })
                         this.append(results)
+                        this.sliceArray()
                     })
             }, 1000)
         }
