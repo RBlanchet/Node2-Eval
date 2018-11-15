@@ -3,11 +3,22 @@
         <div class="title">
             Application - Exercice 5
         </div>
-        <div v-for="element in paginationElement">
-            {{ element }}
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Id</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="element in paginationElement">
+                        <td>{{ element.id }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <button @click="nextPage">Suivant</button>
-        <button @click="prevPage">Precedent</button>
+        <button @click="prevPage"> << </button>
+        <button @click="nextPage"> >> </button>
         <transition name="slide-fade" mode="out-in">
             <router-view></router-view>
         </transition>
@@ -29,7 +40,8 @@
                 pageNumber: 0,
                 currentStartIndexPage: 0,
                 currentEndIndexPage: sizePage,
-                paginationElement: []
+                paginationElement: [],
+                countResult: 0
             }
         },
         methods: {
@@ -82,7 +94,7 @@
 
                 Promise.all([serv1, serv2, serv3])
                     .then(response => {
-                        let results = {date: dateMoment, data: {
+                        let results = {id: this.countResult, date: dateMoment, data: {
                                 1 : null,
                                 2 : null,
                                 3 : null
@@ -93,6 +105,7 @@
                         })
                         this.append(results)
                         this.sliceArray()
+                        this.countResult++
                     })
             }, 1000)
         }

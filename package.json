@@ -4,6 +4,7 @@
   "description": "évaluation NodeJS",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --config build/webpack.config.dev.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -35,7 +36,6 @@
     "fs-extra": "^7.0.1",
     "moment": "^2.22.2",
     "node-fetch": "^2.3.0",
-    "vue": "^2.5.17",
-    "vue-router": "^3.0.1"
+    "vue": "^2.5.17"
   }
 }
