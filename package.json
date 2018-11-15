@@ -22,6 +22,8 @@
   "dependencies": {
     "express": "^4.16.4",
     "fs-extra": "^7.0.1",
-    "node-fetch": "^2.3.0"
+    "moment": "^2.22.2",
+    "node-fetch": "^2.3.0",
+    "vue": "^2.5.17"
   }
 }
