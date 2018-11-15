@@ -8,11 +8,15 @@
                 <thead>
                     <tr>
                         <td>Id</td>
+                        <td>Date de requête</td>
+                        <td>Données des serveur</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="element in paginationElement">
-                        <td>{{ element.id }}</td>
+                        <td> {{ element.id }} </td>
+                        <td> {{ element.date }} </td>
+                        <td> {{ element.data }}</td>
                     </tr>
                 </tbody>
             </table>
