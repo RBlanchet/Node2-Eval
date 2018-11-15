@@ -27,7 +27,8 @@
                     method: 'PUT',
                     body: JSON.stringify(data),
                     headers: {
-                        'Accept': 'application/json'
+                        'Accept': 'application/json',
+                        'Content-type': 'application/json'
                     }
                 })
                     .then(r => {
