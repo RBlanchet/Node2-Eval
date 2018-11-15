@@ -21,10 +21,10 @@ const responseServ = []
 setInterval(() => {
     requestServ()
         .then((response) => {
-            addInArray(response)
+            addInArray([response[0].time, response[1]])
         })
         .catch(e => e)
-}, 1000);
+}, 5000);
 
 /**
  * Execute une requête aux deux serveurs
