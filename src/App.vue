@@ -68,51 +68,50 @@
                 this.pageNumber--;
             },
             sliceArray() {
-                console.log(this.last100Request.slice(this.currentStartIndexPage, this.currentEndIndexPage))
                 this.paginationElement = this.last100Request.slice(this.currentStartIndexPage, this.currentEndIndexPage)
             }
         },
         mounted() {
-            // setInterval(() => {
-            //     let dateMoment = moment()
-            //     let serv1 = new Promise(((resolve, reject) => {
-            //         axios.get('http://localhost:4000')
-            //             .then(response => {
-            //                 resolve({1 : response.data.time})
-            //             })
-            //             .catch(e => resolve({1 : 'DOWN'}))
-            //     }))
-            //     let serv2 = new Promise(((resolve, reject) => {
-            //         axios.get('http://localhost:4001/secret')
-            //             .then(response => {
-            //                 resolve({2 : response.data})
-            //             })
-            //             .catch(e => resolve({2 : 'DOWN'}))
-            //     }))
-            //     let serv3 = new Promise(((resolve, reject) => {
-            //         axios.get('http://localhost:4002/10')
-            //             .then(response => {
-            //                 resolve({3: response.data})
-            //             })
-            //             .catch(e => resolve({3 : 'DOWN'}))
-            //     }))
-            //
-            //     Promise.all([serv1, serv2, serv3])
-            //         .then(response => {
-            //             let results = {id: this.countResult, date: dateMoment, data: {
-            //                     1 : null,
-            //                     2 : null,
-            //                     3 : null
-            //                 }
-            //             }
-            //             response.forEach((value) => {
-            //                 results.data[Object.keys(value)] = Object.values(value)
-            //             })
-            //             this.append(results)
-            //             this.sliceArray()
-            //             this.countResult++
-            //         })
-            // }, 1000)
+            setInterval(() => {
+                let dateMoment = moment()
+                let serv1 = new Promise(((resolve, reject) => {
+                    axios.get('http://localhost:4000')
+                        .then(response => {
+                            resolve({1 : response.data.time})
+                        })
+                        .catch(e => resolve({1 : 'DOWN'}))
+                }))
+                let serv2 = new Promise(((resolve, reject) => {
+                    axios.get('http://localhost:4001/secret')
+                        .then(response => {
+                            resolve({2 : response.data})
+                        })
+                        .catch(e => resolve({2 : 'DOWN'}))
+                }))
+                let serv3 = new Promise(((resolve, reject) => {
+                    axios.get('http://localhost:4002/10')
+                        .then(response => {
+                            resolve({3: response.data})
+                        })
+                        .catch(e => resolve({3 : 'DOWN'}))
+                }))
+
+                Promise.all([serv1, serv2, serv3])
+                    .then(response => {
+                        let results = {id: this.countResult, date: dateMoment, data: {
+                                1 : null,
+                                2 : null,
+                                3 : null
+                            }
+                        }
+                        response.forEach((value) => {
+                            results.data[Object.keys(value)] = Object.values(value)
+                        })
+                        this.append(results)
+                        this.sliceArray()
+                        this.countResult++
+                    })
+            }, 1000)
         }
     }
 </script>

@@ -7,7 +7,7 @@
 const express = require('express')
 const app = express()
 const fse = require('fs-extra')
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -16,17 +16,16 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
+app.use( bodyParser.json() );
 
 /**
  * @description inverse une châine de caractères
  * @param {string} str le mot secret à "encrypter"
  */
 function reverseString(str) {
-    console.log(str)
     let splitString = str.split("")
     let reverseArray = splitString.reverse()
     let joinArray = reverseArray.join("")
@@ -66,7 +65,7 @@ app.get('/secret', function (req, res) {
         .catch(e => e)
   })
 
-app.post('/secretModify', function (req, res) {
+app.put('/secretModify', function (req, res) {
     let anotherSecretWord = reverseString(req.body.name)
     console.log(anotherSecretWord)
 
