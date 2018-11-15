@@ -3,3 +3,4 @@
 
 /* Concern les serveur fake pour les test */
 /fake-server/
+/dist/
