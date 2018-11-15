@@ -4,6 +4,7 @@
   "description": "évaluation NodeJS",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --config build/webpack.config.dev.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,9 +18,19 @@
   },
   "homepage": "https://github.com/RBlanchet/Node2-Eval#readme",
   "devDependencies": {
-    "nodemon": "^1.18.6"
+    "css-loader": "^1.0.1",
+    "node-sass": "^4.10.0",
+    "nodemon": "^1.18.6",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "vue-loader": "^15.4.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "fs-extra": "^7.0.1",
