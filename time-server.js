@@ -6,10 +6,9 @@ const port = 4000
 const moment = require('moment')
 moment.locale('fr')
 
-var currentTime = moment().format("HH:mm:ss")
-
-
 app.get('/', (req, res) => {
+	var currentTime = moment().format("HH:mm:ss")
+	
 	if (req.accepts('json')) {
 		
 		const data =  {time: currentTime}
